@@ -22,4 +22,13 @@ describe('TodosService', () => {
     expect(service.todos.length).toBe(1);
     expect(service.todos).toEqual([{ id: 1, title: 'title', detail: 'detail', category: 'category 1' }]);
   });
+
+  it('should delete selected item from todo list', () => {
+    service.todos = [{ id: 1, title: 'title', detail: 'detail', category: 'category 1' }];
+    const item = { id: 1, title: 'title', detail: 'detail', category: 'category 1' };
+
+    service.delete(item);
+
+    expect(service.todos).toEqual([]);
+  });
 });

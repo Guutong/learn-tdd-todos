@@ -7,8 +7,11 @@ export class TodosService {
   todos = [];
   constructor() { }
 
-
   add(item) {
     this.todos.push(item);
+  }
+
+  delete(item) {
+    this.todos = this.todos.filter(elememt => elememt.id !== item.id);
   }
 }
