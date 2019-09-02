@@ -31,4 +31,13 @@ describe('TodosService', () => {
 
     expect(service.todos).toEqual([]);
   });
+
+  it('should update selected item from todo list', () => {
+    service.todos = [{ id: 1, title: 'title', detail: 'detail', category: 'category 1' }];
+    const item = { id: 1, title: 'title', detail: 'detail', category: 'category 2' };
+
+    service.update(item);
+
+    expect(service.todos).toEqual([{ id: 1, title: 'title', detail: 'detail', category: 'category 2' }]);
+  });
 });
