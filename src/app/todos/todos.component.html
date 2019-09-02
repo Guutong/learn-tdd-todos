@@ -1,9 +1,10 @@
 <router-outlet></router-outlet>
-
+<a routerLink="/todos/add">add</a>
 <ul *ngFor="let item of todos">
   <li>ID: {{item.id}}</li>
   <li>title: {{item.title}}</li>
   <li>detail: {{item.detail}}</li>
   <li>category: {{item.category}}</li>
   <li>status: {{item.status}}</li>
+  <button (click)="delete(item)">delete</button>
 </ul>
