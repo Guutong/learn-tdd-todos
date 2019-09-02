@@ -6,4 +6,9 @@ import { Injectable } from '@angular/core';
 export class TodosService {
   todos = [];
   constructor() { }
+
+
+  add(item) {
+    this.todos.push(item);
+  }
 }
