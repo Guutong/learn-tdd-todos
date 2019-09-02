@@ -21,4 +21,18 @@ describe('TodoAddComponent', () => {
     expect(component.todoForm.get('detail').value).toEqual('');
     expect(component.todoForm.get('category').value).toEqual('');
   });
+
+  it('should invalid fields when input empty title, detail, category fields', () => {
+    component.todoForm.controls.title.setValue('');
+    component.todoForm.controls.detail.setValue('');
+    component.todoForm.controls.category.setValue('');
+    expect(component.todoForm.invalid).toBe(true);
+  });
+
+  it('should valid fields when input title, detail, category fields', () => {
+    component.todoForm.controls.title.setValue('title');
+    component.todoForm.controls.detail.setValue('detail');
+    component.todoForm.controls.category.setValue('category1');
+    expect(component.todoForm.valid).toBe(true);
+  });
 });

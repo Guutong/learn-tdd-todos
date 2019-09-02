@@ -1,6 +1,9 @@
-<form [form]="todoForm">
+<form [formGroup]="todoForm">
+  <span>Task</span>
   <input type="text" formControlName="title" />
+  <span>Detail</span>
   <input type="text" formControlName="detail" />
+  <span>Category</span>
   <input type="text" formControlName="category" />
   <input type="button" value="submit"/>
 </form>
