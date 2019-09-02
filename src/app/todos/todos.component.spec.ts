@@ -11,7 +11,7 @@ describe('TodosComponent', () => {
     component = new TodosComponent(service);
   });
 
-  it('should add todo item to service', () => {
+  it('should delete todo item form service', () => {
     component.todosService.todos = [{
       id: 1,
       title: 'title',

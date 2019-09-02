@@ -40,4 +40,12 @@ describe('TodosService', () => {
 
     expect(service.todos).toEqual([{ id: 1, title: 'title', detail: 'detail', category: 'category 2' }]);
   });
+
+  it('should find item by id from todo list', () => {
+    service.todos = [{ id: 1, title: 'title', detail: 'detail', category: 'category 1' }];
+
+    const item = service.find(1);
+
+    expect(item).toEqual({ id: 1, title: 'title', detail: 'detail', category: 'category 1' });
+  });
 });

@@ -19,7 +19,7 @@ export class TodoAddComponent implements OnInit {
   });
 
   constructor(
-    private todosService: TodosService,
+    public todosService: TodosService,
     private router: Router
   ) { }
 

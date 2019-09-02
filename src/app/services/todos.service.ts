@@ -12,6 +12,10 @@ export class TodosService {
     this.todos.push(item);
   }
 
+  find(id) {
+    return this.todos.find(item => item.id === id);
+  }
+
   delete(item) {
     this.todos = this.todos.filter((e: any) => e.id !== item.id);
   }

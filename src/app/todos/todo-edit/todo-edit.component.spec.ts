@@ -1,15 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormGroup, FormControl } from '@angular/forms';
-import { TodoAddComponent } from './todo-add.component';
+import { TodoEditComponent } from './todo-edit.component';
 import { TodosService } from 'src/app/services/todos.service';
+import { FormGroup } from '@angular/forms';
 
-describe('TodoAddComponent', () => {
-  let component: TodoAddComponent;
+describe('TodoEditComponent', () => {
+  let component: TodoEditComponent;
 
   beforeEach(() => {
     const service = new TodosService();
+    const mockRoute = {} as any;
     const mockRouter = { navigate: () => Promise.resolve(true) } as any;
-    component = new TodoAddComponent(service, mockRouter);
+    component = new TodoEditComponent(mockRoute, service, mockRouter);
   });
 
   it('should create todo form instance of FormGroup', () => {
@@ -47,21 +47,49 @@ describe('TodoAddComponent', () => {
     expect(component.todoForm.valid).toBe(true);
   });
 
-  it('should add todo item to service', () => {
+
+  it('should load default by id', () => {
+    component.todosService.todos = [{
+      id: 1,
+      title: 'title',
+      detail: 'detail',
+      category: 'category1',
+      status: false
+    }];
+
+    component.load(1);
+
+    expect(component.todoForm.controls.id.value).toEqual(1);
+    expect(component.todoForm.controls.title.value).toEqual('title');
+    expect(component.todoForm.controls.detail.value).toEqual('detail');
+    expect(component.todoForm.controls.category.value).toEqual('category1');
+    expect(component.todoForm.controls.status.value).toEqual(false);
+  });
+
+  it('should edit todo item to service', () => {
+    component.todosService.todos = [{
+      id: 1,
+      title: 'title',
+      detail: 'detail',
+      category: 'category1',
+      status: false
+    }];
+
     component.todoForm.controls.id.setValue(1);
     component.todoForm.controls.title.setValue('title');
     component.todoForm.controls.detail.setValue('detail');
     component.todoForm.controls.category.setValue('category1');
-    component.todoForm.controls.status.setValue(false);
+    component.todoForm.controls.status.setValue(true);
 
-    component.add();
+    component.edit();
 
     expect(component.todosService.todos).toEqual([{
       id: 1,
       title: 'title',
       detail: 'detail',
       category: 'category1',
-      status: false
+      status: true
     }]);
   });
+
 });
