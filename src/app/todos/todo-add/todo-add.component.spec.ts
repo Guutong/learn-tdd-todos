@@ -1,12 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TodoAddComponent } from './todo-add.component';
+import { TodosService } from 'src/app/services/todos.service';
 
 describe('TodoAddComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = new TodoAddComponent();
+    const service = new TodosService();
+    const mockRouter = { navigate: () => Promise.resolve(true) } as any;
+    component = new TodoAddComponent(service, mockRouter);
   });
 
   it('should create todo form instance of FormGroup', () => {
@@ -42,5 +45,23 @@ describe('TodoAddComponent', () => {
     component.todoForm.controls.category.setValue('category1');
     component.todoForm.controls.status.setValue(false);
     expect(component.todoForm.valid).toBe(true);
+  });
+
+  it('should add todo item to service', () => {
+    component.todoForm.controls.id.setValue(1);
+    component.todoForm.controls.title.setValue('title');
+    component.todoForm.controls.detail.setValue('detail');
+    component.todoForm.controls.category.setValue('category1');
+    component.todoForm.controls.status.setValue(false);
+
+    component.add();
+
+    expect(component.todosService.todos).toEqual([{
+      id: 1,
+      title: 'title',
+      detail: 'detail',
+      category: 'category1',
+      status: false
+    }]);
   });
 });
