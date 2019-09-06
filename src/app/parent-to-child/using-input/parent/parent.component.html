@@ -1,0 +1,9 @@
+<p>
+  Parent say {{ parentMessage }}
+  <br>
+  <br>Child say to parent {{ childMessage }}
+  <br>
+
+
+  <app-child [childMessage]="parentMessage" (sendMessageToParent)="onChildSendMessage($event)"></app-child>
+</p>
