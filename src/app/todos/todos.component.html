@@ -1,11 +1,22 @@
-<router-outlet></router-outlet>
-<a routerLink="/todos/add">add</a>
-<ul *ngFor="let item of todos">
-  <li>ID: {{item.id}}</li>
-  <li>title: {{item.title}}</li>
-  <li>detail: {{item.detail}}</li>
-  <li>category: {{item.category}}</li>
-  <li>status: {{item.status}}</li>
-  <button (click)="delete(item)">delete</button>
-  <button routerLink="/todos/edit/{{item.id}}">edit</button>
-</ul>
+<a routerLink="/todos/add" class="btn btn-primary">add</a>
+<div class="container pt-2 pb-2 align-middle">
+  <div class="row border-bottom" >
+    <div class="col">ID</div>
+    <div class="col">title</div>
+    <div class="col">detail</div>
+    <div class="col">category</div>
+    <div class="col">status</div>
+    <div class="col"></div>
+  </div>
+  <div class="row border-bottom pt-2 pb-2 d-flex justify-content-center align-items-center" *ngFor="let item of todos" >
+    <div class="col">{{item.id}}</div>
+    <div class="col">{{item.title}}</div>
+    <div class="col">{{item.detail}}</div>
+    <div class="col">{{item.category}}</div>
+    <div class="col">{{item.status}}</div>
+    <div class="col">
+      <button class="btn btn-danger mx-2" (click)="delete(item)">delete</button>
+      <button class="btn btn-success mx-2" routerLink="/todos/edit/{{item.id}}">edit</button>
+    </div>
+  </div>
+</div>
